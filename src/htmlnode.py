@@ -1,5 +1,5 @@
 
-class HtmlNode():
+class HTMLNode():
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
         self.value = value
@@ -15,13 +15,17 @@ class HtmlNode():
         
         result = ""
         for key, val in self.props.items():    
-            result += f" {key}={val}"
+            result += f" {key}=\"{val}\""
         return result
     
     def __repr__(self):
-        return f"""
-        tag: {self.tag}
-        value: {self.value}
-        children: {self.children}
-        props: {self.props}
-    """
+        return f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props})"
+
+class LeafNode(HTMLNode):
+    def __init__(self, tag, value, props=None):
+        super.__init__(tag, value, props=props)
+
+    def to_html(self):
+        if not self.value:
+            raise ValueError("The Node has no value")
+        

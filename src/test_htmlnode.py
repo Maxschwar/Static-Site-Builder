@@ -1,16 +1,54 @@
 import unittest
-from htmlnode import HtmlNode
+from htmlnode import HTMLNode
 
-node1 = HtmlNode("p","Hello world!")
-node2 = HtmlNode("a", "link text to boot", None, { "href": "http://www.boot.dev", "target": "_blank"})
-node3 = HtmlNode("a", "link text to boot", None, { "href": "http://www.boot.dev", "target": "_blank"})
-node4 = HtmlNode("h1", "Welcome to my site", [node1,node2])
 
-class TestHtmlNode(unittest.TestCase):
+class TestHTMLNode(unittest.TestCase):
+    def test_to_html_props(self):
+        node = HTMLNode(
+            "div",
+            "Hello, world!",
+            None,
+            {"class": "greeting", "href": "https://boot.dev"},
+        )
+        self.assertEqual(
+            node.props_to_html(),
+            ' class="greeting" href="https://boot.dev"',
+        )
+
+    def test_values(self):
+        node = HTMLNode(
+            "div",
+            "I wish I could read",
+        )
+        self.assertEqual(
+            node.tag,
+            "div",
+        )
+        self.assertEqual(
+            node.value,
+            "I wish I could read",
+        )
+        self.assertEqual(
+            node.children,
+            None,
+        )
+        self.assertEqual(
+            node.props,
+            None,
+        )
+
     def test_repr(self):
-        self.assertEqual(node2.__repr__(), node3.__repr__())
-        self.assertNotEqual(node1.__repr__(), node2.__repr__())
-        self.assertEqual(node4.__repr__(), node4.__repr__())
+        node = HTMLNode(
+            "p",
+            "What a strange world",
+            None,
+            {"class": "primary"},
+        )
+        self.assertEqual(
+            node.__repr__(),
+            "HTMLNode(p, What a strange world, children: None, {'class': 'primary'})",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
