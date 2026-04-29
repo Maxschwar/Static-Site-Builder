@@ -2,15 +2,6 @@ import re
 from htmlnode import HTMLNode, LeafNode, ParentNode
 from textnode import TextNode, TextType, text_node_to_html_node
 
-def markdown_to_blocks(markdown):
-    blocks = markdown.split("\n\n")
-    filtered_blocks = []
-    for block in blocks:
-        if block == "":
-            continue
-        block = block.strip()
-        filtered_blocks.append(block)
-    return filtered_blocks
 
 def text_to_textnodes(text):
     nodes = [TextNode(text, TextType.TEXT)]

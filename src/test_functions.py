@@ -1,7 +1,7 @@
 import unittest
 from htmlnode import ParentNode, HTMLNode, LeafNode
 from textnode import TextNode, TextType
-from functions import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes, markdown_to_blocks
+from functions import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes
 
 class TestInlineMarkdown(unittest.TestCase):
     def test_delim_bold(self):
